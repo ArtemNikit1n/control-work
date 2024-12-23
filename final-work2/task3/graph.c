@@ -87,7 +87,8 @@ void addVertex(Graph* graph, VertexValue value, bool* errorCode) {
     }
 
     if (graph->vertices[value.key] != NULL) {
-        free(graph->vertices[value.key]);
+        *errorCode = true;
+        return;
     }
     graph->vertices[value.key] = createVertex(value, errorCode);
     graph->numberVertices = max(graph->numberVertices, value.key + 1);
